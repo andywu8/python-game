@@ -77,8 +77,24 @@ class Cloud(pygame.sprite.Sprite):
         self.rect.move_ip(-5, 0)
         if self.rect.right < 0:
             self.kill()
-pygame.init()
 
+            
+#set up for sounds
+pygame.mixer.init()
+
+pygame.init()
+clock = pygame.time.Clock()
+# Load and play background music
+# Sound source: http://ccmixter.org/files/Apoxode/59262
+# License: https://creativecommons.org/licenses/by/3.0/
+pygame.mixer.music.load("Apoxode_-_Electric_1.mp3")
+pygame.mixer.music.play(loops=-1)
+
+# Load all sound files
+# Sound sources: Jon Fincher
+move_up_sound = pygame.mixer.Sound("Rising_putter.ogg")
+move_down_sound = pygame.mixer.Sound("Falling_putter.ogg")
+collision_sound = pygame.mixer.Sound("Collision.ogg")
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 ADDENEMY = pygame.USEREVENT + 1
@@ -130,7 +146,6 @@ while running:
         running = False
 
     # Setup the clock for a decent framerate
-    clock = pygame.time.Clock()
     pygame.display.flip()
     # Ensure program maintains a rate of 30 frames per second
     clock.tick(30)
