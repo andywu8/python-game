@@ -1,4 +1,5 @@
 import pygame
+import random
 
 from pygame.locals import (
     K_UP,
@@ -39,11 +40,36 @@ class Player(pygame.sprite.Sprite):
         if self.rect.bottom >= SCREEN_HEIGHT:
             self.rect.bottom = SCREEN_HEIGHT
 
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self):
+        super(Enemy, self).__init__()
+        self.surf = pygame.Surface((20, 10))
+        self.surf.fill((255, 255, 255))
+        #update rect to be a random location along the right edge of the screen 
+        self.rect = self.surf.get_rect(
+            center = (
+                random.randint(SCREEN_WIDTH + 20, SCREEN_WIDTH + 100),
+                random.randint(0, SCREEN_HEIGHT),
+            )
+        )
+        #randomize speed of the enemy
+        self.speed = random.randint(5, 20)
+    
+    # Check to see the right side of the rect to see if it's moved past the left side of the screen
+    def update(self):
+        self.rect.move_ip(-self.speed, 0)
+        if self.rect.right < 0:
+            self.kill()
 pygame.init()
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 player = Player()
+
+#create groups to hold enemy sprites and all sprites
+enemies = pygame.sprite.Group()
+all_sprites = pygame.sprite.Group()
+all_sprites.add(player)
 
 running = True 
 
@@ -62,15 +88,18 @@ while running:
 
     # screen.fill((255, 255, 255))
     screen.fill((0, 0, 0))
-    surf = pygame.Surface((50, 50))
-    surf.fill((0, 0, 0))
-    rect = surf.get_rect()
-    surf_center = (
-        (SCREEN_WIDTH-surf.get_width())/2,
-        (SCREEN_HEIGHT-surf.get_height())/2
-    )
+
+    for entity in all_sprites:
+        screen.blit(entity.surf, entity.rect)
+    # surf = pygame.Surface((50, 50))
+    # surf.fill((0, 0, 0))
+    # rect = surf.get_rect()
+    # surf_center = (
+    #     (SCREEN_WIDTH-surf.get_width())/2,
+    #     (SCREEN_HEIGHT-surf.get_height())/2
+    # )
     # Draw surf onto the screen at the center
-    screen.blit(player.surf, player.rect)
+    # screen.blit(player.surf, player.rect)
     # screen.blit(surf, surf_center)
     pygame.display.flip()
 
