@@ -84,18 +84,18 @@ pygame.mixer.init()
 
 pygame.init()
 clock = pygame.time.Clock()
-# Load and play background music
-# Sound source: http://ccmixter.org/files/Apoxode/59262
-# License: https://creativecommons.org/licenses/by/3.0/
-pygame.mixer.music.load("Apoxode_-_Electric_1.mp3")
-pygame.mixer.music.play(loops=-1)
+# # Load and play background music
+# # Sound source: http://ccmixter.org/files/Apoxode/59262
+# # License: https://creativecommons.org/licenses/by/3.0/
+# pygame.mixer.music.load("Apoxode_-_Electric_1.mp3")
+# pygame.mixer.music.play(loops=-1)
 
-# Load all sound files
-# Sound sources: Jon Fincher
-move_up_sound = pygame.mixer.Sound("Rising_putter.ogg")
-move_down_sound = pygame.mixer.Sound("Falling_putter.ogg")
-collision_sound = pygame.mixer.Sound("Collision.ogg")
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+# # Load all sound files
+# # Sound sources: Jon Fincher
+# move_up_sound = pygame.mixer.Sound("Rising_putter.ogg")
+# move_down_sound = pygame.mixer.Sound("Falling_putter.ogg")
+# collision_sound = pygame.mixer.Sound("Collision.ogg")
+# screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 ADDENEMY = pygame.USEREVENT + 1
 pygame.time.set_timer(ADDENEMY, 250)
