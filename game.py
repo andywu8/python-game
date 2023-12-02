@@ -17,8 +17,10 @@ SCREEN_HEIGHT = 600
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.Surface((75, 25))
-        self.surf.fill((255, 255, 255))
+        # self.surf = pygame.Surface((75, 25))
+        self.surf = pygame.image.load("jet.png").convert()
+        self.surf.set_colorkey((255, 255, 255), RLEACCEL)
+        # self.surf.fill((255, 255, 255))
         self.rect = self.surf.get_rect()
 
     def update(self, pressed_keys):
@@ -44,8 +46,10 @@ class Player(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
-        self.surf = pygame.Surface((20, 10))
-        self.surf.fill((255, 255, 255))
+        self.surf = pygame.image.load("missile.png").convert()
+        self.surf.set_colorkey((255, 255, 255), RLEACCEL)
+        # self.surf = pygame.Surface((20, 10))
+        # self.surf.fill((255, 255, 255))
         #update rect to be a random location along the right edge of the screen 
         self.rect = self.surf.get_rect(
             center = (
