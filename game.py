@@ -92,6 +92,8 @@ while running:
     # Get the set of keys pressed and check for user input
     pressed_keys = pygame.key.get_pressed()
     player.update((pressed_keys))
+    enemies.update()
+
 
 
     # screen.fill((255, 255, 255))
@@ -99,6 +101,12 @@ while running:
 
     for entity in all_sprites:
         screen.blit(entity.surf, entity.rect)
+
+    if pygame.sprite.spritecollideany(player, enemies):
+        player.kill()
+        running = False
+
+
     # surf = pygame.Surface((50, 50))
     # surf.fill((0, 0, 0))
     # rect = surf.get_rect()
