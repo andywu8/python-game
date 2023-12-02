@@ -2,6 +2,7 @@ import pygame
 import random
 
 from pygame.locals import (
+    RLEACCEL,
     K_UP,
     K_DOWN,
     K_LEFT,
@@ -94,9 +95,6 @@ while running:
     player.update((pressed_keys))
     enemies.update()
 
-
-
-    # screen.fill((255, 255, 255))
     screen.fill((0, 0, 0))
 
     for entity in all_sprites:
@@ -107,15 +105,5 @@ while running:
         running = False
 
 
-    # surf = pygame.Surface((50, 50))
-    # surf.fill((0, 0, 0))
-    # rect = surf.get_rect()
-    # surf_center = (
-    #     (SCREEN_WIDTH-surf.get_width())/2,
-    #     (SCREEN_HEIGHT-surf.get_height())/2
-    # )
-    # Draw surf onto the screen at the center
-    # screen.blit(player.surf, player.rect)
-    # screen.blit(surf, surf_center)
     pygame.display.flip()
 
