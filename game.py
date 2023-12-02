@@ -23,6 +23,8 @@ pygame.init()
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+player = Player()
+
 running = True 
 
 while running:
@@ -33,7 +35,8 @@ while running:
         elif event.type == QUIT:
             running = False
 
-    screen.fill((255, 255, 255))
+    # screen.fill((255, 255, 255))
+    screen.fill((0, 0, 0))
     surf = pygame.Surface((50, 50))
     surf.fill((0, 0, 0))
     rect = surf.get_rect()
@@ -42,6 +45,7 @@ while running:
         (SCREEN_HEIGHT-surf.get_height())/2
     )
     # Draw surf onto the screen at the center
-    screen.blit(surf, surf_center)
+    screen.blit(player.surf, player.rect)
+    # screen.blit(surf, surf_center)
     pygame.display.flip()
 
